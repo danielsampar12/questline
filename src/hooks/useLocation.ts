@@ -48,8 +48,7 @@ export const useLocation = (): UseLocationReturn => {
     try {
       // Use high accuracy options for better precision
       const locationResult = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.High,
-        timeInterval: 10000, // 10 seconds
+        accuracy: Location.Accuracy.Balanced,
       });
 
       const locationData: LocationData = {
