@@ -7,8 +7,8 @@ export const QUESTS: Quest[] = [
     riddle: 'Where the old oak tree once stood, now stands a building tall. Find the spot where history meets the future.',
     hint: 'Look for a building with a clock tower',
     targetLocation: {
-      latitude: -26.9020959,
-      longitude: -49.0811795,
+      latitude: -26.9021007,
+      longitude: -49.0786046,
       accuracy: 50 // 50 meter radius
     },
     completed: false,
