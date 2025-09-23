@@ -2,13 +2,14 @@ import { Quest } from '../types/Quest';
 
 export const QUESTS: Quest[] = [
   {
+    // BAckstage
     id: 'quest-1',
     title: 'The Hidden Treasure',
     riddle: 'Where the old oak tree once stood, now stands a building tall. Find the spot where history meets the future.',
     hint: 'Look for a building with a clock tower',
     targetLocation: {
-      latitude: -26.9021007,
-      longitude: -49.0786046,
+      latitude: -26.899297,
+      longitude: -49.0770892,
       accuracy: 50 // 50 meter radius
     },
     completed: false,
@@ -16,13 +17,14 @@ export const QUESTS: Quest[] = [
     points: 100
   },
   {
+    // aquele café
     id: 'quest-2',
     title: 'The Secret Garden',
     riddle: 'In the heart of the city, where flowers bloom and fountains flow, seek the statue that never sleeps.',
     hint: 'Near the main square, look for a bronze figure',
     targetLocation: {
-      latitude: -26.9045000,
-      longitude: -49.0830000,
+      latitude: -26.9086372,
+      longitude: -49.0729781,
       accuracy: 30
     },
     completed: false,
@@ -30,13 +32,14 @@ export const QUESTS: Quest[] = [
     points: 200
   },
   {
+    // nonno nico
     id: 'quest-3',
     title: 'The Lost Library',
     riddle: 'Where knowledge rests and stories unfold, find the place where silence speaks volumes.',
     hint: 'Look for a building with columns and steps',
     targetLocation: {
-      latitude: -26.9000000,
-      longitude: -49.0850000,
+      latitude: -26.9069832,
+      longitude: -49.0809675,
       accuracy: 25
     },
     completed: false,
