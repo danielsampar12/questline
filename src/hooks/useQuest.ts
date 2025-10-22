@@ -1,4 +1,5 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Quest, QuestProgress, LocationData } from '../types/Quest';
 import { QUESTS, getQuestById, getNextQuest } from '../data/quests';
 import { isWithinTarget, calculateDistance, getDirectionHint } from '../utils/locationUtils';
@@ -25,21 +26,51 @@ const INITIAL_PROGRESS: QuestProgress = {
   currentStreak: 0,
 };
 
+const STORAGE_KEY = 'quest_progress_v1';
+
 export const useQuest = (): UseQuestReturn => {
   const [progress, setProgress] = useState<QuestProgress>(INITIAL_PROGRESS);
   const [isLastQuest, setIsLastQuest] = useState(false);
   const [currentQuest, setCurrentQuest] = useState<Quest | null>(null);
 
+  // 🔄 carregar progresso salvo
+  useEffect(() => {
+    const loadProgress = async () => {
+      try {
+        const stored = await AsyncStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          const parsed = JSON.parse(stored) as QuestProgress;
+          setProgress(parsed);
+          if (parsed.currentQuestId) {
+            const quest = getQuestById(parsed.currentQuestId);
+            setCurrentQuest(quest || null);
+          }
+        }
+      } catch (e) {
+        console.warn('Erro ao carregar progresso:', e);
+      }
+    };
+    loadProgress();
+  }, []);
+
+  // 💾 salvar sempre que o progresso mudar
+  useEffect(() => {
+    const saveProgress = async () => {
+      try {
+        await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+      } catch (e) {
+        console.warn('Erro ao salvar progresso:', e);
+      }
+    };
+    saveProgress();
+  }, [progress]);
+
   const completeQuest = useCallback((questId: string) => {
     setProgress(prev => {
-      if (prev.completedQuests.includes(questId)) {
-        return prev; // Already completed
-      }
+      if (prev.completedQuests.includes(questId)) return prev;
 
       const quest = getQuestById(questId);
-      if (!quest) {
-        return prev;
-      }
+      if (!quest) return prev;
 
       const newProgress = {
         ...prev,
@@ -48,40 +79,25 @@ export const useQuest = (): UseQuestReturn => {
         currentStreak: prev.currentStreak + 1,
         currentQuestId: null,
       };
-      
       return newProgress;
     });
-
     setCurrentQuest(null);
   }, []);
 
   const startNextQuest = useCallback(() => {
     setProgress(prev => {
       const nextQuest = getNextQuest(prev.completedQuests);
-      
       if (nextQuest) {
         setCurrentQuest(nextQuest);
-        return {
-          ...prev,
-          currentQuestId: nextQuest.id,
-        };
+        return { ...prev, currentQuestId: nextQuest.id };
       } else if (prev.completedQuests.length === 5) {
         setIsLastQuest(true);
-        return prev;
       }
-      
       return prev;
     });
   }, []);
 
-  const checkLocation = useCallback(async (
-    location: LocationData
-  ): Promise<{
-    success: boolean;
-    distance: number;
-    direction?: string;
-    message: string;
-  }> => {
+  const checkLocation = useCallback(async (location: LocationData) => {
     if (!currentQuest) {
       return {
         success: false,
@@ -114,27 +130,18 @@ export const useQuest = (): UseQuestReturn => {
       };
     } else {
       let message = `❌ Ainda não chegamos lá! Estamos a ${Math.round(distance)}m de distância.`;
-      
-      if (distance > 1000) {
-        message += ` Vamos para ${direction}!`;
-      } else if (distance > 100) {
-        message += ` Tamo quase lá! Siga para ${direction}.`;
-      } else {
-        message += ` Quase lá! Só falta pouco: ${direction}!`;
-      }
+      if (distance > 1000) message += ` Vamos para ${direction}!`;
+      else if (distance > 100) message += ` Tamo quase lá! Siga para ${direction}.`;
+      else message += ` Quase lá! Só falta pouco: ${direction}!`;
 
-      return {
-        success: false,
-        distance,
-        direction,
-        message,
-      };
+      return { success: false, distance, direction, message };
     }
   }, [currentQuest, completeQuest]);
 
-  const resetProgress = useCallback(() => {
+  const resetProgress = useCallback(async () => {
     setProgress(INITIAL_PROGRESS);
     setCurrentQuest(null);
+    await AsyncStorage.removeItem(STORAGE_KEY);
   }, []);
 
   return {

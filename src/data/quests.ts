@@ -8,8 +8,8 @@ export const QUESTS: Quest[] = [
     riddle: 'Numa noite de rolê que nunca imaginei que mudaria tudo. Onde descobri que a sorte aparece nos lugares mais inesperados.',
     hint: 'É um lugar que eu sempre reclamava de ir, mas valeu a pena estar lá naquela noite.',
     targetLocation: {
-      latitude: -26.9021614,
-      longitude: -49.0785365,
+      latitude: -26.920886,
+      longitude: -49.0714982,
       accuracy: 50 // raio de 50 metros
     },
     completed: false,
@@ -25,7 +25,7 @@ export const QUESTS: Quest[] = [
     targetLocation: {
       latitude: -26.8990482,
       longitude: -49.0802902,
-      accuracy: 30
+      accuracy: 35
     },
     completed: false,
     difficulty: 'medium',
@@ -38,9 +38,9 @@ export const QUESTS: Quest[] = [
     riddle: 'Esse acho que nem precisa de dica. Bora logo que ainda ta no happy hour!',
     hint: 'Quase uma segunda casa.',
     targetLocation: {
-      latitude: -26.8993649,
-      longitude: -49.0798137,
-      accuracy: 30
+      latitude: -26.8993697,
+      longitude: -49.0798083,
+      accuracy: 40
     },
     completed: false,
     difficulty: 'medium',
@@ -53,8 +53,8 @@ export const QUESTS: Quest[] = [
     riddle: 'Onde eu quase disse "eu te amo" pela primeira vez, porque meu coração transbordava, mas me segurei. Fiquei nervoso como nunca antes de te levar nesse lugar. Lá nós conversamos sobre tudo e eu descobri que te amava ainda mais.',
     hint: 'Infelizmente não dá mais para subir no terraço depois do jantar 🥲',
     targetLocation: {
-      latitude: -26.906988,
-      longitude: -49.0789475,
+      latitude: -26.9041199,
+      longitude: -49.0777477,
       accuracy: 30
     },
     completed: false,
