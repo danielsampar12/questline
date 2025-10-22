@@ -24,12 +24,12 @@ export const useLocation = (): UseLocationReturn => {
       setHasPermission(granted);
       
       if (!granted) {
-        setError('Location permission is required to play quests');
+        setError('Permissão de localização é necessária para jogar as missões');
       }
       
       return granted;
     } catch (err) {
-      setError('Failed to request location permission');
+      setError('Falha ao solicitar permissão de localização');
       return false;
     }
   }, []);
@@ -61,13 +61,13 @@ export const useLocation = (): UseLocationReturn => {
       setLocation(locationData);
       return locationData;
     } catch (err) {
-      let errorMessage = 'Failed to get current location';
+      let errorMessage = 'Falha ao obter localização atual';
       
       if (err instanceof Error) {
         if (err.message.includes('timeout')) {
-          errorMessage = 'Location request timed out. Please try again.';
+          errorMessage = 'Solicitação de localização expirou. Tente novamente.';
         } else if (err.message.includes('denied')) {
-          errorMessage = 'Location access denied. Please enable location services.';
+          errorMessage = 'Acesso à localização negado. Ative os serviços de localização.';
         } else {
           errorMessage = err.message;
         }

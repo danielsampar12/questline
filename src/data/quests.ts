@@ -4,13 +4,13 @@ export const QUESTS: Quest[] = [
   {
     // BAckstage
     id: 'quest-1',
-    title: 'The Hidden Treasure',
-    riddle: 'Where the old oak tree once stood, now stands a building tall. Find the spot where history meets the future.',
-    hint: 'Look for a building with a clock tower',
+    title: 'O Tesouro Escondido',
+    riddle: 'Onde outrora a velha árvore de carvalho se erguia, agora se levanta um prédio alto. Encontre o local onde a história encontra o futuro.',
+    hint: 'Procure por um prédio com uma torre de relógio',
     targetLocation: {
       latitude: -26.899297,
       longitude: -49.0770892,
-      accuracy: 50 // 50 meter radius
+      accuracy: 50 // raio de 50 metros
     },
     completed: false,
     difficulty: 'easy',
@@ -19,9 +19,9 @@ export const QUESTS: Quest[] = [
   {
     // aquele café
     id: 'quest-2',
-    title: 'The Secret Garden',
-    riddle: 'In the heart of the city, where flowers bloom and fountains flow, seek the statue that never sleeps.',
-    hint: 'Near the main square, look for a bronze figure',
+    title: 'O Jardim Secreto',
+    riddle: 'No coração da cidade, onde as flores desabrocham e as fontes fluem, procure pela estátua que nunca dorme.',
+    hint: 'Perto da praça principal, procure por uma figura de bronze',
     targetLocation: {
       latitude: -26.9086372,
       longitude: -49.0729781,
@@ -34,9 +34,9 @@ export const QUESTS: Quest[] = [
   {
     // nonno nico
     id: 'quest-3',
-    title: 'The Lost Library',
-    riddle: 'Where knowledge rests and stories unfold, find the place where silence speaks volumes.',
-    hint: 'Look for a building with columns and steps',
+    title: 'A Biblioteca Perdida',
+    riddle: 'Onde o conhecimento repousa e as histórias se desdobram, encontre o lugar onde o silêncio fala volumes.',
+    hint: 'Procure por um prédio com colunas e degraus',
     targetLocation: {
       latitude: -26.9069832,
       longitude: -49.0809675,

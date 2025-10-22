@@ -8,25 +8,25 @@ import { formatDistance } from "../../utils/locationUtils";
 export default function QuestScreen() {
   const { getCurrentLocation, isLoading, error, hasPermission, requestPermission } = useLocation();
   const { currentQuest, progress, checkLocation, startNextQuest, resetProgress } = useQuest();
-  const [message, setMessage] = React.useState("Welcome to the Quest App! Start your first quest to begin.");
+  const [message, setMessage] = React.useState("Bem-vindo ao App de Missões! Comece sua primeira missão para começar.");
 
   const handleCheckLocation = async () => {
     if (!hasPermission) {
       const granted = await requestPermission();
       if (!granted) {
-        setMessage("❌ Location permission is required to play quests");
+        setMessage("❌ Permissão de localização é necessária para jogar as missões");
         return;
       }
     }
 
     if (!currentQuest) {
-      setMessage("❌ No active quest. Please start a quest first!");
+      setMessage("❌ Nenhuma missão ativa. Comece uma missão primeiro!");
       return;
     }
 
     const location = await getCurrentLocation();
     if (!location) {
-      setMessage("❌ Could not get your location. Please try again.");
+      setMessage("❌ Não foi possível obter sua localização. Tente novamente.");
       return;
     }
 
@@ -36,14 +36,14 @@ export default function QuestScreen() {
     if (result.success) {
       // Show success alert
       Alert.alert(
-        "Quest Complete! 🎉",
-        `You found "${currentQuest.title}"!\n+${currentQuest.points} points\n\nTotal Points: ${progress.totalPoints + currentQuest.points}`,
+        "Missão Concluída! 🎉",
+        `Você encontrou "${currentQuest.title}"!\n+${currentQuest.points} pontos\n\nTotal de Pontos: ${progress.totalPoints + currentQuest.points}`,
         [
           {
-            text: "Start Next Quest",
+            text: "Próxima Missão",
             onPress: () => {
               startNextQuest();
-              setMessage("New quest started! Follow the riddle to find your next location.");
+              setMessage("Nova missão iniciada! Siga a charada para encontrar sua próxima localização.");
             }
           },
           { text: "OK" }
@@ -54,30 +54,30 @@ export default function QuestScreen() {
 
   const handleStartQuest = () => {
     if (currentQuest) {
-      setMessage("You already have an active quest! Check your location to complete it.");
+      setMessage("Você já tem uma missão ativa! Verifique sua localização para completá-la.");
       return;
     }
 
     startNextQuest();
     if (progress.completedQuests.length === 0) {
-      setMessage("First quest started! Follow the riddle to find your target location.");
+      setMessage("Primeira missão iniciada! Siga a charada para encontrar sua localização alvo.");
     } else {
-      setMessage("New quest started! Follow the riddle to find your next location.");
+      setMessage("Nova missão iniciada! Siga a charada para encontrar sua próxima localização.");
     }
   };
 
   const handleReset = () => {
     Alert.alert(
-      "Reset Progress",
-      "Are you sure you want to reset all your progress? This cannot be undone.",
+      "Resetar Progresso",
+      "Tem certeza de que deseja resetar todo o seu progresso? Esta ação não pode ser desfeita.",
       [
-        { text: "Cancel", style: "cancel" },
+        { text: "Cancelar", style: "cancel" },
         {
-          text: "Reset",
+          text: "Resetar",
           style: "destructive",
           onPress: () => {
             resetProgress();
-            setMessage("Progress reset. Start a new quest to begin!");
+            setMessage("Progresso resetado. Comece uma nova missão para começar!");
           }
         }
       ]
@@ -89,19 +89,19 @@ export default function QuestScreen() {
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       {/* Progress Section */}
       <Card style={styles.progressCard}>
-        <Card.Title title="Progress" />
+        <Card.Title title="Progresso" />
         <Card.Content>
           <View style={styles.progressRow}>
-            <Text variant="bodyMedium">Points: {progress.totalPoints}</Text>
-            <Text variant="bodyMedium">Streak: {progress.currentStreak}</Text>
+            <Text variant="bodyMedium">Pontos: {progress.totalPoints}</Text>
+            <Text variant="bodyMedium">Sequência: {progress.currentStreak}</Text>
           </View>
           <View style={styles.progressRow}>
-            <Text variant="bodyMedium">Completed: {progress.completedQuests.length}/3</Text>
+            <Text variant="bodyMedium">Concluídas: {progress.completedQuests.length}/3</Text>
             <Chip 
               mode="outlined" 
               textStyle={styles.chipText}
             >
-              {progress.completedQuests.length === 3 ? "All Complete!" : "In Progress"}
+              {progress.completedQuests.length === 3 ? "Todas Concluídas!" : "Em Andamento"}
             </Chip>
           </View>
           <ProgressBar 
@@ -116,7 +116,7 @@ export default function QuestScreen() {
         <Card style={styles.questCard}>
           <Card.Title 
             title={currentQuest.title}
-            subtitle={`${currentQuest.difficulty.toUpperCase()} • ${currentQuest.points} points`}
+            subtitle={`${currentQuest.difficulty === 'easy' ? 'FÁCIL' : currentQuest.difficulty === 'medium' ? 'MÉDIO' : 'DIFÍCIL'} • ${currentQuest.points} pontos`}
           />
           <Card.Content>
             <Text variant="bodyLarge" style={styles.riddle}>
@@ -124,7 +124,7 @@ export default function QuestScreen() {
             </Text>
             {currentQuest.hint && (
               <Text variant="bodyMedium" style={styles.hint}>
-                💡 Hint: {currentQuest.hint}
+                💡 Dica: {currentQuest.hint}
               </Text>
             )}
           </Card.Content>
@@ -136,18 +136,18 @@ export default function QuestScreen() {
               disabled={isLoading}
               style={styles.actionButton}
             >
-              {isLoading ? "Checking..." : "Check Location"}
+              {isLoading ? "Verificando..." : "Verificar Localização"}
             </Button>
           </Card.Actions>
         </Card>
       ) : (
         <Card style={styles.questCard}>
-          <Card.Title title="No Active Quest" />
+          <Card.Title title="Nenhuma Missão Ativa" />
           <Card.Content>
             <Text variant="bodyMedium">
               {progress.completedQuests.length === 3 
-                ? "🎉 Congratulations! You've completed all quests!"
-                : "Start a new quest to begin your adventure!"
+                ? "🎉 Parabéns! Você concluiu todas as missões!"
+                : "Comece uma nova missão para iniciar sua aventura!"
               }
             </Text>
           </Card.Content>
@@ -158,7 +158,7 @@ export default function QuestScreen() {
               disabled={progress.completedQuests.length === 3}
               style={styles.actionButton}
             >
-              {progress.completedQuests.length === 3 ? "All Complete!" : "Start Quest"}
+              {progress.completedQuests.length === 3 ? "Todas Concluídas!" : "Iniciar Missão"}
             </Button>
           </Card.Actions>
         </Card>
@@ -174,7 +174,7 @@ export default function QuestScreen() {
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="small" />
               <Text variant="bodySmall" style={styles.loadingText}>
-                Getting your location...
+                Obtendo sua localização...
               </Text>
             </View>
           )}
@@ -188,7 +188,7 @@ export default function QuestScreen() {
           onPress={handleReset}
           style={styles.resetButton}
         >
-          Reset Progress
+          Resetar Progresso
         </Button>
         {!hasPermission && (
           <Button 
@@ -196,7 +196,7 @@ export default function QuestScreen() {
             onPress={requestPermission}
             style={styles.permissionButton}
           >
-            Enable Location
+            Ativar Localização
           </Button>
         )}
       </View>

@@ -72,7 +72,7 @@ export const useQuest = (): UseQuestReturn => {
       return {
         success: false,
         distance: 0,
-        message: 'No active quest. Start a quest first!',
+        message: 'Nenhuma missão ativa. Comece uma missão primeiro!',
       };
     }
 
@@ -96,17 +96,17 @@ export const useQuest = (): UseQuestReturn => {
       return {
         success: true,
         distance,
-        message: `🎉 Quest Complete! You found "${currentQuest.title}"! +${currentQuest.points} points`,
+        message: `🎉 Missão Concluída! Você encontrou "${currentQuest.title}"! +${currentQuest.points} pontos`,
       };
     } else {
-      let message = `❌ Not quite there yet! You're ${Math.round(distance)}m away.`;
+      let message = `❌ Ainda não chegou lá! Você está a ${Math.round(distance)}m de distância.`;
       
       if (distance > 1000) {
-        message += ` Head ${direction} to get closer!`;
+        message += ` Vá para ${direction} para se aproximar!`;
       } else if (distance > 100) {
-        message += ` You're getting close! Go ${direction}.`;
+        message += ` Você está chegando perto! Vá para ${direction}.`;
       } else {
-        message += ` Almost there! Just a few more steps ${direction}.`;
+        message += ` Quase lá! Apenas alguns passos para ${direction}.`;
       }
 
       return {
