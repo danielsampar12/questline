@@ -23,8 +23,8 @@ export const QUESTS: Quest[] = [
     riddle: 'Onde celebramos sua primeira vitória profissional, onde meus olhos brilharam de orgulho e eu me apaixonei ainda mais pela mulher foda que você é.',
     hint: '🍣',
     targetLocation: {
-      latitude: -26.9021614,
-      longitude: -49.0785365,
+      latitude: -26.8990482,
+      longitude: -49.0802902,
       accuracy: 30
     },
     completed: false,
@@ -38,8 +38,8 @@ export const QUESTS: Quest[] = [
     riddle: 'Esse acho que nem precisa de dica. Bora logo que ainda ta no happy hour!',
     hint: 'Quase uma segunda casa.',
     targetLocation: {
-      latitude: -26.8993697,
-      longitude: -49.0798083,
+      latitude: -26.8993649,
+      longitude: -49.0798137,
       accuracy: 30
     },
     completed: false,

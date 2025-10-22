@@ -39,15 +39,18 @@ export default function QuestScreen() {
               
               // Mostrar alerta de sucesso
               Alert.alert(
-                "Memória Encontrada! 💕",
-                `Você encontrou "${currentQuest.title}"!\n+${currentQuest.points} pontos de amor\n\nTotal de Pontos: ${progress.totalPoints + currentQuest.points}`,
+                "Memória Encontrada! 🎈",
+                `Você encontrou "${currentQuest.title}"!\n+${currentQuest.points} pontos\n\nTotal de Pontos: ${progress.totalPoints + currentQuest.points}`,
                 [
                   {
                     text: "Próxima Memória",
                     onPress: () => {
                       console.log('🔧 DEBUG: Iniciando próxima missão');
-                      startNextQuest();
-                      setMessage("Nova memória desbloqueada! Vamos continuar nossa história.");
+                      // Aguardar um pouco para o estado ser atualizado
+                      setTimeout(() => {
+                        startNextQuest();
+                        setMessage("Nova memória desbloqueada! Vamos continuar nossa história.");
+                      }, 100);
                     }
                   },
                   { text: "OK" }
@@ -85,14 +88,17 @@ export default function QuestScreen() {
     if (result.success) {
       // Show success alert
       Alert.alert(
-        "Memória Encontrada! 💕",
-        `Você encontrou "${currentQuest.title}"!\n+${currentQuest.points} pontos de amor\n\nTotal de Pontos: ${progress.totalPoints + currentQuest.points}`,
+        "Memória Encontrada! 🎈",
+        `Você encontrou "${currentQuest.title}"!\n+${currentQuest.points} pontos\n\nTotal de Pontos: ${progress.totalPoints + currentQuest.points}`,
         [
           {
             text: "Próxima Memória",
             onPress: () => {
-              startNextQuest();
-              setMessage("Nova memória desbloqueada! Vamos continuar nossa história.");
+              // Aguardar um pouco para o estado ser atualizado
+              setTimeout(() => {
+                startNextQuest();
+                setMessage("Nova memória desbloqueada! Vamos continuar nossa história.");
+              }, 100);
             }
           },
           { text: "OK" }
@@ -151,7 +157,7 @@ export default function QuestScreen() {
         </TouchableOpacity>
         <Card.Content>
           <View style={styles.progressRow}>
-            <Text variant="bodyMedium">Pontos de Amor: {progress.totalPoints}</Text>
+            <Text variant="bodyMedium">Pontuação: {progress.totalPoints}</Text>
             <Text variant="bodyMedium">Memórias: {progress.currentStreak}</Text>
           </View>
           <View style={styles.progressRow}>

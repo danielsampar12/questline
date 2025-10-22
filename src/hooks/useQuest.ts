@@ -56,18 +56,23 @@ export const useQuest = (): UseQuestReturn => {
   }, []);
 
   const startNextQuest = useCallback(() => {
-    const nextQuest = getNextQuest(progress.completedQuests);
-    
-    if (nextQuest) {
-      setCurrentQuest(nextQuest);
-      setProgress(prev => ({
-        ...prev,
-        currentQuestId: nextQuest.id,
-      }));
-    } else if (progress.completedQuests.length === 5) {
-      setIsLastQuest(true)
-    }
-  }, [progress.completedQuests]);
+    setProgress(prev => {
+      const nextQuest = getNextQuest(prev.completedQuests);
+      
+      if (nextQuest) {
+        setCurrentQuest(nextQuest);
+        return {
+          ...prev,
+          currentQuestId: nextQuest.id,
+        };
+      } else if (prev.completedQuests.length === 5) {
+        setIsLastQuest(true);
+        return prev;
+      }
+      
+      return prev;
+    });
+  }, []);
 
   const checkLocation = useCallback(async (
     location: LocationData
@@ -105,17 +110,17 @@ export const useQuest = (): UseQuestReturn => {
       return {
         success: true,
         distance,
-        message: `💕 Memória Encontrada! Você encontrou "${currentQuest.title}"! +${currentQuest.points} pontos de amor`,
+        message: `🎈 Memória Encontrada! Você encontrou "${currentQuest.title}"! +${currentQuest.points} pontos`,
       };
     } else {
       let message = `❌ Ainda não chegamos lá! Estamos a ${Math.round(distance)}m de distância.`;
       
       if (distance > 1000) {
-        message += ` Vamos para ${direction} para nos aproximarmos!`;
+        message += ` Vamos para ${direction}!`;
       } else if (distance > 100) {
-        message += ` Estamos chegando perto! Vamos para ${direction}.`;
+        message += ` Tamo quase lá! Siga para ${direction}.`;
       } else {
-        message += ` Quase lá! Apenas alguns passos para ${direction}.`;
+        message += ` Quase lá! Só falta pouco: ${direction}!`;
       }
 
       return {

@@ -136,7 +136,16 @@ export function getDirectionHint(
   const bearingAngleDegrees = (bearingAngleRadians * 180 / Math.PI + 360) % 360;
   
   // Define the 8 cardinal directions in order (starting from North, going clockwise)
-  const compassDirections = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+  const compassDirections = [
+    'Norte',
+    'Nordeste',
+    'Leste',
+    'Sudeste',
+    'Sul',
+    'Sudoeste',
+    'Oeste',
+    'Noroeste'
+  ];
   
   // Each direction covers 45 degrees (360° / 8 directions = 45°)
   // Round to the nearest 45-degree increment to get the direction index
