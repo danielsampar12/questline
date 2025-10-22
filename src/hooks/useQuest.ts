@@ -72,7 +72,7 @@ export const useQuest = (): UseQuestReturn => {
       return {
         success: false,
         distance: 0,
-        message: 'Nenhuma missão ativa. Comece uma missão primeiro!',
+        message: 'Nenhuma memória ativa. Vamos começar nossa jornada!',
       };
     }
 
@@ -96,15 +96,15 @@ export const useQuest = (): UseQuestReturn => {
       return {
         success: true,
         distance,
-        message: `🎉 Missão Concluída! Você encontrou "${currentQuest.title}"! +${currentQuest.points} pontos`,
+        message: `💕 Memória Encontrada! Você encontrou "${currentQuest.title}"! +${currentQuest.points} pontos de amor`,
       };
     } else {
-      let message = `❌ Ainda não chegou lá! Você está a ${Math.round(distance)}m de distância.`;
+      let message = `❌ Ainda não chegamos lá! Estamos a ${Math.round(distance)}m de distância.`;
       
       if (distance > 1000) {
-        message += ` Vá para ${direction} para se aproximar!`;
+        message += ` Vamos para ${direction} para nos aproximarmos!`;
       } else if (distance > 100) {
-        message += ` Você está chegando perto! Vá para ${direction}.`;
+        message += ` Estamos chegando perto! Vamos para ${direction}.`;
       } else {
         message += ` Quase lá! Apenas alguns passos para ${direction}.`;
       }

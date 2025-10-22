@@ -24,7 +24,7 @@ export const useLocation = (): UseLocationReturn => {
       setHasPermission(granted);
       
       if (!granted) {
-        setError('Permissão de localização é necessária para jogar as missões');
+        setError('Permissão de localização é necessária para nossa jornada de amor');
       }
       
       return granted;

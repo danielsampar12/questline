@@ -3,24 +3,23 @@ import { View, StyleSheet, ScrollView, Alert } from "react-native";
 import { Button, Card, Text, ProgressBar, Chip, ActivityIndicator } from "react-native-paper";
 import { useLocation } from "../../hooks/useLocation";
 import { useQuest } from "../../hooks/useQuest";
-import { formatDistance } from "../../utils/locationUtils";
 
 export default function QuestScreen() {
   const { getCurrentLocation, isLoading, error, hasPermission, requestPermission } = useLocation();
   const { currentQuest, progress, checkLocation, startNextQuest, resetProgress } = useQuest();
-  const [message, setMessage] = React.useState("Bem-vindo ao App de Missões! Comece sua primeira missão para começar.");
+  const [message, setMessage] = React.useState("Bem-vinda à nossa jornada de amor! Vamos reviver os momentos mais especiais da nossa história juntos.");
 
   const handleCheckLocation = async () => {
     if (!hasPermission) {
       const granted = await requestPermission();
       if (!granted) {
-        setMessage("❌ Permissão de localização é necessária para jogar as missões");
+        setMessage("❌ Permissão de localização é necessária para nossa jornada de amor");
         return;
       }
     }
 
     if (!currentQuest) {
-      setMessage("❌ Nenhuma missão ativa. Comece uma missão primeiro!");
+      setMessage("❌ Nenhuma memória ativa. Vamos começar nossa jornada!");
       return;
     }
 
@@ -36,14 +35,14 @@ export default function QuestScreen() {
     if (result.success) {
       // Show success alert
       Alert.alert(
-        "Missão Concluída! 🎉",
-        `Você encontrou "${currentQuest.title}"!\n+${currentQuest.points} pontos\n\nTotal de Pontos: ${progress.totalPoints + currentQuest.points}`,
+        "Memória Encontrada! 💕",
+        `Você encontrou "${currentQuest.title}"!\n+${currentQuest.points} pontos de amor\n\nTotal de Pontos: ${progress.totalPoints + currentQuest.points}`,
         [
           {
-            text: "Próxima Missão",
+            text: "Próxima Memória",
             onPress: () => {
               startNextQuest();
-              setMessage("Nova missão iniciada! Siga a charada para encontrar sua próxima localização.");
+              setMessage("Nova memória desbloqueada! Vamos continuar nossa jornada de amor.");
             }
           },
           { text: "OK" }
@@ -54,15 +53,15 @@ export default function QuestScreen() {
 
   const handleStartQuest = () => {
     if (currentQuest) {
-      setMessage("Você já tem uma missão ativa! Verifique sua localização para completá-la.");
+      setMessage("Você já tem uma memória ativa! Vamos encontrar esse local especial juntos.");
       return;
     }
 
     startNextQuest();
     if (progress.completedQuests.length === 0) {
-      setMessage("Primeira missão iniciada! Siga a charada para encontrar sua localização alvo.");
+      setMessage("Primeira memória desbloqueada! Vamos reviver nosso primeiro momento especial.");
     } else {
-      setMessage("Nova missão iniciada! Siga a charada para encontrar sua próxima localização.");
+      setMessage("Nova memória desbloqueada! Vamos continuar nossa jornada de amor.");
     }
   };
 
@@ -89,23 +88,23 @@ export default function QuestScreen() {
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       {/* Progress Section */}
       <Card style={styles.progressCard}>
-        <Card.Title title="Progresso" />
+        <Card.Title title="Nossa Jornada" />
         <Card.Content>
           <View style={styles.progressRow}>
-            <Text variant="bodyMedium">Pontos: {progress.totalPoints}</Text>
-            <Text variant="bodyMedium">Sequência: {progress.currentStreak}</Text>
+            <Text variant="bodyMedium">Pontos de Amor: {progress.totalPoints}</Text>
+            <Text variant="bodyMedium">Memórias: {progress.currentStreak}</Text>
           </View>
           <View style={styles.progressRow}>
-            <Text variant="bodyMedium">Concluídas: {progress.completedQuests.length}/3</Text>
+            <Text variant="bodyMedium">Revividas: {progress.completedQuests.length}/5</Text>
             <Chip 
               mode="outlined" 
               textStyle={styles.chipText}
             >
-              {progress.completedQuests.length === 3 ? "Todas Concluídas!" : "Em Andamento"}
+              {progress.completedQuests.length === 5 ? "Jornada Completa!" : "Em Andamento"}
             </Chip>
           </View>
           <ProgressBar 
-            progress={progress.completedQuests.length / 3} 
+            progress={progress.completedQuests.length / 5} 
             style={styles.progressBar}
           />
         </Card.Content>
@@ -142,12 +141,12 @@ export default function QuestScreen() {
         </Card>
       ) : (
         <Card style={styles.questCard}>
-          <Card.Title title="Nenhuma Missão Ativa" />
+          <Card.Title title="Nenhuma Memória Ativa" />
           <Card.Content>
             <Text variant="bodyMedium">
-              {progress.completedQuests.length === 3 
-                ? "🎉 Parabéns! Você concluiu todas as missões!"
-                : "Comece uma nova missão para iniciar sua aventura!"
+              {progress.completedQuests.length === 5 
+                ? "💕 Nossa jornada está completa! Agora você tem uma pergunta muito especial para responder..."
+                : "Vamos começar nossa jornada de amor! Reviva os momentos mais especiais da nossa história."
               }
             </Text>
           </Card.Content>
@@ -155,10 +154,10 @@ export default function QuestScreen() {
             <Button 
               mode="contained" 
               onPress={handleStartQuest}
-              disabled={progress.completedQuests.length === 3}
+              disabled={progress.completedQuests.length === 5}
               style={styles.actionButton}
             >
-              {progress.completedQuests.length === 3 ? "Todas Concluídas!" : "Iniciar Missão"}
+              {progress.completedQuests.length === 5 ? "Jornada Completa!" : "Iniciar Jornada"}
             </Button>
           </Card.Actions>
         </Card>
