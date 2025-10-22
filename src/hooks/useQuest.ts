@@ -15,6 +15,7 @@ interface UseQuestReturn {
   completeQuest: (questId: string) => void;
   startNextQuest: () => void;
   resetProgress: () => void;
+  isLastQuest: boolean;
 }
 
 const INITIAL_PROGRESS: QuestProgress = {
@@ -26,6 +27,7 @@ const INITIAL_PROGRESS: QuestProgress = {
 
 export const useQuest = (): UseQuestReturn => {
   const [progress, setProgress] = useState<QuestProgress>(INITIAL_PROGRESS);
+  const [isLastQuest, setIsLastQuest] = useState(false);
   const [currentQuest, setCurrentQuest] = useState<Quest | null>(null);
 
   const completeQuest = useCallback((questId: string) => {
@@ -35,15 +37,19 @@ export const useQuest = (): UseQuestReturn => {
       }
 
       const quest = getQuestById(questId);
-      if (!quest) return prev;
+      if (!quest) {
+        return prev;
+      }
 
-      return {
+      const newProgress = {
         ...prev,
         completedQuests: [...prev.completedQuests, questId],
         totalPoints: prev.totalPoints + quest.points,
         currentStreak: prev.currentStreak + 1,
         currentQuestId: null,
       };
+      
+      return newProgress;
     });
 
     setCurrentQuest(null);
@@ -51,12 +57,15 @@ export const useQuest = (): UseQuestReturn => {
 
   const startNextQuest = useCallback(() => {
     const nextQuest = getNextQuest(progress.completedQuests);
+    
     if (nextQuest) {
       setCurrentQuest(nextQuest);
       setProgress(prev => ({
         ...prev,
         currentQuestId: nextQuest.id,
       }));
+    } else if (progress.completedQuests.length === 5) {
+      setIsLastQuest(true)
     }
   }, [progress.completedQuests]);
 
@@ -130,5 +139,6 @@ export const useQuest = (): UseQuestReturn => {
     completeQuest,
     startNextQuest,
     resetProgress,
+    isLastQuest,
   };
 };

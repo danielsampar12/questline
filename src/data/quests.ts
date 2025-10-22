@@ -5,8 +5,8 @@ export const QUESTS: Quest[] = [
     // Primeiro beijo
     id: 'quest-1',
     title: 'O Primeiro Beijo',
-    riddle: 'Onde nossos corações bateram em uníssono pela primeira vez, onde o tempo parou e só existimos nós dois. Encontre o lugar onde nossa história de amor verdadeiramente começou.',
-    hint: 'É um lugar meio insalubre, mas valeu a pena ter ido lá naquela noite.',
+    riddle: 'Numa noite de rolê que nunca imaginei que mudaria tudo. Onde descobri que a sorte aparece nos lugares mais inesperados.',
+    hint: 'É um lugar que eu sempre reclamava de ir, mas valeu a pena estar lá naquela noite.',
     targetLocation: {
       latitude: -26.9021614,
       longitude: -49.0785365,
@@ -21,7 +21,7 @@ export const QUESTS: Quest[] = [
     id: 'quest-2',
     title: 'A Primeira Conquista',
     riddle: 'Onde celebramos sua primeira vitória profissional, onde meus olhos brilharam de orgulho e eu me apaixonei ainda mais pela mulher foda que você é.',
-    hint: 'Procure pelo lugar onde comemoramos sua primeira promoção',
+    hint: '🍣',
     targetLocation: {
       latitude: -26.9021614,
       longitude: -49.0785365,
@@ -35,8 +35,8 @@ export const QUESTS: Quest[] = [
     // Primeiro encontro
     id: 'quest-3',
     title: 'Nosso Primeiro Encontro',
-    riddle: 'Onde tudo começou, onde nossos olhares se cruzaram pela primeira vez e eu soube que você seria especial na minha vida. Encontre o lugar onde nossa jornada teve início.',
-    hint: 'Procure pelo local do nosso primeiro encontro',
+    riddle: 'Esse acho que nem precisa de dica. Bora logo que ainda ta no happy hour!',
+    hint: 'Quase uma segunda casa.',
     targetLocation: {
       latitude: -26.8993697,
       longitude: -49.0798083,
@@ -50,8 +50,8 @@ export const QUESTS: Quest[] = [
     // Primeiro jantar romântico
     id: 'quest-4',
     title: 'O Primeiro Jantar Romântico',
-    riddle: 'Onde compartilhamos nossa primeira refeição especial, onde conversamos por horas e eu descobri que você é a pessoa com quem quero passar o resto da minha vida.',
-    hint: 'Procure pelo restaurante do nosso primeiro jantar romântico',
+    riddle: 'Onde eu quase disse "eu te amo" pela primeira vez, porque meu coração transbordava, mas me segurei. Fiquei nervoso como nunca antes de te levar nesse lugar. Lá nós conversamos sobre tudo e eu descobri que te amava ainda mais.',
+    hint: 'Infelizmente não dá mais para subir no terraço depois do jantar 🥲',
     targetLocation: {
       latitude: -26.906988,
       longitude: -49.0789475,
@@ -65,8 +65,8 @@ export const QUESTS: Quest[] = [
     // Primeiro apartamento
     id: 'quest-5',
     title: 'Nosso Lar',
-    riddle: 'Onde começamos a construir nossa vida juntos, onde criamos nossas primeiras memórias como casal e onde sempre teremos um lugar especial no coração. Mesmo que nos mudemos, este será sempre nosso primeiro lar.',
-    hint: 'Procure pelo nosso primeiro apartamento, onde começamos nossa vida juntos',
+    riddle: 'Onde começamos a construir nossa vida juntos, onde criamos nossas primeiras memórias morando juntos e que sempre terá um lugar especial no coração. Mesmo que nos mudemos, este será sempre nosso primeiro lar.',
+    hint: 'O primeiro apartamento que nos mudamos juntos.',
     targetLocation: {
       latitude: -26.9021614,
       longitude: -49.0785365,

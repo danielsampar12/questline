@@ -1,13 +1,63 @@
 import * as React from "react";
-import { View, StyleSheet, ScrollView, Alert } from "react-native";
+import { View, StyleSheet, ScrollView, Alert, TouchableOpacity } from "react-native";
 import { Button, Card, Text, ProgressBar, Chip, ActivityIndicator } from "react-native-paper";
 import { useLocation } from "../../hooks/useLocation";
 import { useQuest } from "../../hooks/useQuest";
 
 export default function QuestScreen() {
   const { getCurrentLocation, isLoading, error, hasPermission, requestPermission } = useLocation();
-  const { currentQuest, progress, checkLocation, startNextQuest, resetProgress } = useQuest();
+  const { currentQuest, progress, checkLocation, startNextQuest, resetProgress, completeQuest } = useQuest();
   const [message, setMessage] = React.useState("Bem-vinda à nossa história! Vamos reviver os momentos mais especiais que vivemos juntos.");
+  const [debugMode, setDebugMode] = React.useState(false);
+  const [tapCount, setTapCount] = React.useState(0);
+
+  // Função para ativar modo debug (toque triplo no título)
+  const handleTitlePress = () => {
+    setTapCount(prev => prev + 1);
+    setTimeout(() => setTapCount(0), 1000);
+    
+    if (tapCount === 2) { // Terceiro toque
+      setDebugMode(!debugMode);
+      setMessage(debugMode ? "Modo debug desativado" : "🔧 Modo debug ativado");
+    }
+  };
+
+  // Função para pular missão atual (modo debug)
+  const handleSkipQuest = () => {
+    if (!currentQuest) return;
+    
+    Alert.alert(
+      "Pular Missão",
+      `Tem certeza que deseja pular "${currentQuest.title}"?`,
+      [
+        { text: "Cancelar", style: "cancel" },
+        {
+          text: "Pular",
+            onPress: () => {
+              // Completar a missão atual IMEDIATAMENTE
+              completeQuest(currentQuest.id);
+              
+              // Mostrar alerta de sucesso
+              Alert.alert(
+                "Memória Encontrada! 💕",
+                `Você encontrou "${currentQuest.title}"!\n+${currentQuest.points} pontos de amor\n\nTotal de Pontos: ${progress.totalPoints + currentQuest.points}`,
+                [
+                  {
+                    text: "Próxima Memória",
+                    onPress: () => {
+                      console.log('🔧 DEBUG: Iniciando próxima missão');
+                      startNextQuest();
+                      setMessage("Nova memória desbloqueada! Vamos continuar nossa história.");
+                    }
+                  },
+                  { text: "OK" }
+                ]
+              );
+            }
+        }
+      ]
+    );
+  };
 
   const handleCheckLocation = async () => {
     if (!hasPermission) {
@@ -82,13 +132,23 @@ export default function QuestScreen() {
       ]
     );
   };
+
+  const getButtonText = () => {
+    if (progress.completedQuests.length === 5) {
+      return "História Completa!";
+    }
+
+    return progress.completedQuests.length === 0 ? "Iniciar História" : "Continuar História";
+  }
   
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       {/* Progress Section */}
       <Card style={styles.progressCard}>
-        <Card.Title title="Nossa História" />
+        <TouchableOpacity onPress={handleTitlePress}>
+          <Card.Title title="Nossa História" />
+        </TouchableOpacity>
         <Card.Content>
           <View style={styles.progressRow}>
             <Text variant="bodyMedium">Pontos de Amor: {progress.totalPoints}</Text>
@@ -137,6 +197,16 @@ export default function QuestScreen() {
             >
               {isLoading ? "Verificando..." : "Cheguei!"}
             </Button>
+            {debugMode && (
+              <Button 
+                mode="outlined" 
+                onPress={handleSkipQuest}
+                style={[styles.actionButton, { backgroundColor: '#ffeb3b', borderColor: '#ffeb3b' }]}
+                textColor="#000"
+              >
+                🔧 Pular
+              </Button>
+            )}
           </Card.Actions>
         </Card>
       ) : (
@@ -157,9 +227,20 @@ export default function QuestScreen() {
               disabled={progress.completedQuests.length === 5}
               style={styles.actionButton}
             >
-              {progress.completedQuests.length === 5 ? "História Completa!" : "Iniciar História"}
+              {getButtonText()}
             </Button>
           </Card.Actions>
+        </Card>
+      )}
+
+      {/* Debug Indicator */}
+      {debugMode && (
+        <Card style={[styles.messageCard, { backgroundColor: '#fff3cd', borderColor: '#ffeb3b' }]}>
+          <Card.Content>
+            <Text variant="bodySmall" style={{ color: '#856404', textAlign: 'center' }}>
+              🔧 Modo Debug Ativo - Toque triplo no título para desativar
+            </Text>
+          </Card.Content>
         </Card>
       )}
 
