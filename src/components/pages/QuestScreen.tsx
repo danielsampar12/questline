@@ -7,19 +7,19 @@ import { useQuest } from "../../hooks/useQuest";
 export default function QuestScreen() {
   const { getCurrentLocation, isLoading, error, hasPermission, requestPermission } = useLocation();
   const { currentQuest, progress, checkLocation, startNextQuest, resetProgress } = useQuest();
-  const [message, setMessage] = React.useState("Bem-vinda à nossa jornada de amor! Vamos reviver os momentos mais especiais da nossa história juntos.");
+  const [message, setMessage] = React.useState("Bem-vinda à nossa história! Vamos reviver os momentos mais especiais que vivemos juntos.");
 
   const handleCheckLocation = async () => {
     if (!hasPermission) {
       const granted = await requestPermission();
       if (!granted) {
-        setMessage("❌ Permissão de localização é necessária para nossa jornada de amor");
+        setMessage("❌ Permissão de localização é necessária para nossa história");
         return;
       }
     }
 
     if (!currentQuest) {
-      setMessage("❌ Nenhuma memória ativa. Vamos começar nossa jornada!");
+      setMessage("❌ Nenhuma memória ativa. Vamos reviver nossa história!");
       return;
     }
 
@@ -42,7 +42,7 @@ export default function QuestScreen() {
             text: "Próxima Memória",
             onPress: () => {
               startNextQuest();
-              setMessage("Nova memória desbloqueada! Vamos continuar nossa jornada de amor.");
+              setMessage("Nova memória desbloqueada! Vamos continuar nossa história.");
             }
           },
           { text: "OK" }
@@ -61,7 +61,7 @@ export default function QuestScreen() {
     if (progress.completedQuests.length === 0) {
       setMessage("Primeira memória desbloqueada! Vamos reviver nosso primeiro momento especial.");
     } else {
-      setMessage("Nova memória desbloqueada! Vamos continuar nossa jornada de amor.");
+      setMessage("Nova memória desbloqueada! Vamos continuar nossa história.");
     }
   };
 
@@ -88,7 +88,7 @@ export default function QuestScreen() {
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       {/* Progress Section */}
       <Card style={styles.progressCard}>
-        <Card.Title title="Nossa Jornada" />
+        <Card.Title title="Nossa História" />
         <Card.Content>
           <View style={styles.progressRow}>
             <Text variant="bodyMedium">Pontos de Amor: {progress.totalPoints}</Text>
@@ -135,7 +135,7 @@ export default function QuestScreen() {
               disabled={isLoading}
               style={styles.actionButton}
             >
-              {isLoading ? "Verificando..." : "Verificar Localização"}
+              {isLoading ? "Verificando..." : "Cheguei!"}
             </Button>
           </Card.Actions>
         </Card>
@@ -145,8 +145,8 @@ export default function QuestScreen() {
           <Card.Content>
             <Text variant="bodyMedium">
               {progress.completedQuests.length === 5 
-                ? "💕 Nossa jornada está completa! Agora você tem uma pergunta muito especial para responder..."
-                : "Vamos começar nossa jornada de amor! Reviva os momentos mais especiais da nossa história."
+                ? "💕 Nossa história está completa! Revivemos todos os momentos especiais que vivemos juntos. Agora você tem uma pergunta muito especial para responder..."
+                : "Vamos começar nossa história! Reviva os momentos mais especiais que vivemos juntos."
               }
             </Text>
           </Card.Content>
@@ -157,7 +157,7 @@ export default function QuestScreen() {
               disabled={progress.completedQuests.length === 5}
               style={styles.actionButton}
             >
-              {progress.completedQuests.length === 5 ? "Jornada Completa!" : "Iniciar Jornada"}
+              {progress.completedQuests.length === 5 ? "História Completa!" : "Iniciar História"}
             </Button>
           </Card.Actions>
         </Card>

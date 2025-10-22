@@ -72,7 +72,7 @@ export const useQuest = (): UseQuestReturn => {
       return {
         success: false,
         distance: 0,
-        message: 'Nenhuma memória ativa. Vamos começar nossa jornada!',
+        message: 'Nenhuma memória ativa. Vamos começar nossa história!',
       };
     }
 
