@@ -7,7 +7,7 @@ import { useQuest } from "../../hooks/useQuest";
 export default function QuestScreen() {
   const { getCurrentLocation, isLoading, error, hasPermission, requestPermission } = useLocation();
   const { currentQuest, progress, checkLocation, startNextQuest, resetProgress, completeQuest } = useQuest();
-  const [message, setMessage] = React.useState("Bem-vinda à nossa história! Vamos reviver os momentos mais especiais que vivemos juntos.");
+  const [message, setMessage] = React.useState("Vamos reviver os momentos mais importantes que vivemos juntos.");
   const [debugMode, setDebugMode] = React.useState(false);
   const [tapCount, setTapCount] = React.useState(0);
 
@@ -221,8 +221,8 @@ export default function QuestScreen() {
           <Card.Content>
             <Text variant="bodyMedium">
               {progress.completedQuests.length === 5 
-                ? "💕 Nossa história está completa! Revivemos todos os momentos especiais que vivemos juntos. Agora você tem uma pergunta muito especial para responder..."
-                : "Vamos começar nossa história! Reviva os momentos mais especiais que vivemos juntos."
+                ? "Nossa história está completa! Revivemos todos os momentos especiais que vivemos juntos. Agora tenho uma pergunta especial pra te fazer..."
+                : "Vamos reviver os picos que fizeram parte da nossa história!"
               }
             </Text>
           </Card.Content>
@@ -260,7 +260,7 @@ export default function QuestScreen() {
             <View style={styles.loadingContainer}>
               <ActivityIndicator size="small" />
               <Text variant="bodySmall" style={styles.loadingText}>
-                Obtendo sua localização...
+                Veno onde cê tá...
               </Text>
             </View>
           )}
@@ -284,7 +284,7 @@ export default function QuestScreen() {
             onPress={requestPermission}
             style={styles.permissionButton}
           >
-            Ativar Localização
+            Libera a loc ai po
           </Button>
         )}
       </View>

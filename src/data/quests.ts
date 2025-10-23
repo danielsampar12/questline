@@ -6,7 +6,7 @@ export const QUESTS: Quest[] = [
     id: 'quest-1',
     title: 'O Primeiro Beijo',
     riddle: 'Numa noite de rolê que nunca imaginei que mudaria tudo, mas foi onde descobri que a sorte aparece nos lugares mais inesperados.',
-    hint: 'Sempre reclamei de ir. Mas aquela noite value a pena',
+    hint: 'Falo muito mal do lugar. Mas aquela noite value a pena',
     targetLocation: {
       latitude: -26.9208813,
       longitude: -49.0694651,
@@ -19,7 +19,7 @@ export const QUESTS: Quest[] = [
   {
     // Primeira promoção no trabalho
     id: 'quest-2',
-    title: 'A Primeira Conquista',
+    title: 'Meu Orgulho',
     riddle: 'Onde celebramos sua primeira vitória profissional, onde meus olhos brilharam de orgulho e eu me apaixonei ainda mais pela mulher foda que você é.',
     hint: '🍣',
     targetLocation: {
@@ -35,7 +35,7 @@ export const QUESTS: Quest[] = [
     // Primeiro encontro
     id: 'quest-3',
     title: 'Nosso Primeiro Encontro',
-    riddle: 'Esse acho que nem precisa de dica. Bora logo que ainda ta no happy hour!',
+    riddle: 'Esse acho que nem precisa de dica. Agiliza que ainda tem chopp em dobro!',
     hint: '🍻',
     targetLocation: {
       latitude: -26.8993903,
@@ -49,8 +49,8 @@ export const QUESTS: Quest[] = [
   {
     // Primeiro jantar romântico
     id: 'quest-4',
-    title: 'O Primeiro Jantar Romântico',
-    riddle: 'Depos dessa da noite que te levei lá o "eu te amo" ficou preso na garganta.',
+    title: 'Nosso Primeiro Jantar',
+    riddle: 'Depois dessa da noite que te levei lá o "eu te amo" ficou preso na garganta.',
     hint: 'Infelizmente não dá mais para subir no terraço depois do jantar 🥲',
     targetLocation: {
       latitude: -26.9069832,
