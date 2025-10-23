@@ -10,7 +10,7 @@ export const QUESTS: Quest[] = [
     targetLocation: {
       latitude: -26.9208813,
       longitude: -49.0694651,
-      accuracy: 500 // raio de 50 metros
+      accuracy: 350 // raio de 50 metros
     },
     completed: false,
     difficulty: 'easy',
@@ -25,7 +25,7 @@ export const QUESTS: Quest[] = [
     targetLocation: {
       latitude: -26.9221066,
       longitude: -49.0663125,
-      accuracy: 500
+      accuracy: 350
     },
     completed: false,
     difficulty: 'medium',
@@ -40,7 +40,7 @@ export const QUESTS: Quest[] = [
     targetLocation: {
       latitude: -26.8993903,
       longitude: -49.0797488,
-      accuracy: 500
+      accuracy: 350
     },
     completed: false,
     difficulty: 'medium',
@@ -55,7 +55,7 @@ export const QUESTS: Quest[] = [
     targetLocation: {
       latitude: -26.9069832,
       longitude: -49.0809729,
-      accuracy: 500
+      accuracy: 350
     },
     completed: false,
     difficulty: 'medium',
@@ -70,7 +70,7 @@ export const QUESTS: Quest[] = [
     targetLocation: {
       latitude: -26.9021007, 
       longitude: -49.0786046 ,
-      accuracy: 200
+      accuracy: 100
     },
     completed: false,
     difficulty: 'hard',
