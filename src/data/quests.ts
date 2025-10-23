@@ -8,7 +8,7 @@ export const QUESTS: Quest[] = [
     riddle: 'Numa noite de rolê que nunca imaginei que mudaria tudo. Onde descobri que a sorte aparece nos lugares mais inesperados.',
     hint: 'É um lugar que eu sempre reclamava de ir, mas valeu a pena estar lá naquela noite.',
     targetLocation: {
-      latitude: -26.8951684,
+      latitude: -26.9208861,
       longitude: -49.0694597,
       accuracy: 50 // raio de 50 metros
     },
@@ -24,8 +24,8 @@ export const QUESTS: Quest[] = [
     hint: '🍣',
     targetLocation: {
       latitude: -26.9221114,
-      longitude: -49.0663071,
-      accuracy: 35
+      longitude: -49.0686031,
+      accuracy: 50
     },
     completed: false,
     difficulty: 'medium',
