@@ -5,8 +5,8 @@ export const QUESTS: Quest[] = [
     // Primeiro beijo
     id: 'quest-1',
     title: 'O Primeiro Beijo',
-    riddle: 'Numa noite de rolê que nunca imaginei que mudaria tudo. Onde descobri que a sorte aparece nos lugares mais inesperados.',
-    hint: 'É um lugar que eu sempre reclamava de ir, mas valeu a pena estar lá naquela noite.',
+    riddle: 'Numa noite de rolê que nunca imaginei que mudaria tudo, mas foi onde descobri que a sorte aparece nos lugares mais inesperados.',
+    hint: 'Sempre reclamei de ir. Mas aquela noite value a pena',
     targetLocation: {
       latitude: -26.9208813,
       longitude: -49.0694651,
@@ -36,7 +36,7 @@ export const QUESTS: Quest[] = [
     id: 'quest-3',
     title: 'Nosso Primeiro Encontro',
     riddle: 'Esse acho que nem precisa de dica. Bora logo que ainda ta no happy hour!',
-    hint: 'Quase uma segunda casa.',
+    hint: '🍻',
     targetLocation: {
       latitude: -26.8993903,
       longitude: -49.0797488,
@@ -50,7 +50,7 @@ export const QUESTS: Quest[] = [
     // Primeiro jantar romântico
     id: 'quest-4',
     title: 'O Primeiro Jantar Romântico',
-    riddle: 'Onde eu quase disse "eu te amo" pela primeira vez, porque meu coração transbordava, mas me segurei. Fiquei nervoso como nunca antes de te levar nesse lugar. Lá nós conversamos sobre tudo e eu descobri que te amava ainda mais.',
+    riddle: 'Depos dessa da noite que te levei lá o "eu te amo" ficou preso na garganta.',
     hint: 'Infelizmente não dá mais para subir no terraço depois do jantar 🥲',
     targetLocation: {
       latitude: -26.9069832,
@@ -70,7 +70,7 @@ export const QUESTS: Quest[] = [
     targetLocation: {
       latitude: -26.9021007, 
       longitude: -49.0786046 ,
-      accuracy: 100
+      accuracy: 230
     },
     completed: false,
     difficulty: 'hard',
