@@ -269,13 +269,15 @@ export default function QuestScreen() {
 
       {/* Action Buttons */}
       <View style={styles.buttonRow}>
-        <Button 
+        {debugMode && (
+          <Button 
           mode="outlined" 
           onPress={handleReset}
           style={styles.resetButton}
-        >
-          Resetar Progresso
-        </Button>
+          >
+            Resetar Progresso
+          </Button>
+        )}
         {!hasPermission && (
           <Button 
             mode="contained-tonal" 
