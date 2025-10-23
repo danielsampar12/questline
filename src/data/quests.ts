@@ -8,9 +8,9 @@ export const QUESTS: Quest[] = [
     riddle: 'Numa noite de rolê que nunca imaginei que mudaria tudo. Onde descobri que a sorte aparece nos lugares mais inesperados.',
     hint: 'É um lugar que eu sempre reclamava de ir, mas valeu a pena estar lá naquela noite.',
     targetLocation: {
-      latitude: -26.9208861,
-      longitude: -49.0694597,
-      accuracy: 50 // raio de 50 metros
+      latitude: -26.9208813,
+      longitude: -49.0694651,
+      accuracy: 500 // raio de 50 metros
     },
     completed: false,
     difficulty: 'easy',
@@ -23,9 +23,9 @@ export const QUESTS: Quest[] = [
     riddle: 'Onde celebramos sua primeira vitória profissional, onde meus olhos brilharam de orgulho e eu me apaixonei ainda mais pela mulher foda que você é.',
     hint: '🍣',
     targetLocation: {
-      latitude: -26.9221114,
-      longitude: -49.0686031,
-      accuracy: 50
+      latitude: -26.9221066,
+      longitude: -49.0663125,
+      accuracy: 500
     },
     completed: false,
     difficulty: 'medium',
@@ -38,9 +38,9 @@ export const QUESTS: Quest[] = [
     riddle: 'Esse acho que nem precisa de dica. Bora logo que ainda ta no happy hour!',
     hint: 'Quase uma segunda casa.',
     targetLocation: {
-      latitude: -26.899685,
-      longitude: -49.0778829,
-      accuracy: 60
+      latitude: -26.8993903,
+      longitude: -49.0797488,
+      accuracy: 500
     },
     completed: false,
     difficulty: 'medium',
@@ -53,9 +53,9 @@ export const QUESTS: Quest[] = [
     riddle: 'Onde eu quase disse "eu te amo" pela primeira vez, porque meu coração transbordava, mas me segurei. Fiquei nervoso como nunca antes de te levar nesse lugar. Lá nós conversamos sobre tudo e eu descobri que te amava ainda mais.',
     hint: 'Infelizmente não dá mais para subir no terraço depois do jantar 🥲',
     targetLocation: {
-      latitude: -26.906988,
-      longitude: -49.0809675,
-      accuracy: 50
+      latitude: -26.9069832,
+      longitude: -49.0809729,
+      accuracy: 500
     },
     completed: false,
     difficulty: 'medium',
@@ -68,9 +68,9 @@ export const QUESTS: Quest[] = [
     riddle: 'Onde começamos a construir nossa vida juntos, onde criamos nossas primeiras memórias morando juntos e que sempre terá um lugar especial no coração. Mesmo que nos mudemos, este será sempre nosso primeiro lar.',
     hint: 'O primeiro apartamento que nos mudamos juntos.',
     targetLocation: {
-      latitude: -26.9021614,
-      longitude: -49.0785365,
-      accuracy: 50
+      latitude: -26.9021007, 
+      longitude: -49.0786046 ,
+      accuracy: 200
     },
     completed: false,
     difficulty: 'hard',
