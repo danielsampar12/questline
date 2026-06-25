@@ -1,140 +1,103 @@
-# Quest App - React Native Location-Based Game
+<div align="center">
 
-A React Native quest/geocaching app built with Expo that challenges users to solve riddles and find specific locations using GPS coordinates.
+# Questline
+
+<p>
+  <img src="https://img.shields.io/badge/React%20Native-0.79-61DAFB?style=flat-square&logo=react" />
+  <img src="https://img.shields.io/badge/Expo-53-000020?style=flat-square&logo=expo" />
+  <img src="https://img.shields.io/badge/TypeScript-5.8-3178C6?style=flat-square&logo=typescript" />
+  <img src="https://img.shields.io/badge/platform-iOS%20%7C%20Android-lightgrey?style=flat-square" />
+  <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" />
+</p>
+
+**A location-based quest game built with React Native & Expo.**
+*Solve riddles, follow GPS clues, and find the spot.*
+
+</div>
+
+---
+
+> Originally built as a gift for my girlfriend — inspired by Five Feet Apart — and grown into a small
+> React Native project I'm very fond of.
+
+## What it is
+
+Questline turns the real world into a treasure hunt. Each quest gives you a riddle and
+a hint; solve it, walk to the right place, and the app uses high-accuracy GPS to confirm
+you've arrived before unlocking the next step. Progress, points, and streaks are tracked
+locally as you go.
 
 ## Features
 
-- 🎯 **Location-based quests** with riddles and hints
-- 📍 **High-accuracy GPS** location detection
-- 🏆 **Progress tracking** with points and streaks
-- 🎨 **Modern UI** with React Native Paper
-- ⚡ **Performance optimized** with custom hooks
-- 🔄 **Quest progression** system
+- 🎯 **Riddle-driven quests** — each step is a puzzle that points to a real location
+- 📍 **High-accuracy GPS** — proximity detection with real-time distance to the target
+- 🏆 **Progress tracking** — points, streaks, and quest completion persisted on-device
+- 🔄 **Quest progression** — steps unlock in sequence as locations are reached
+- 🎨 **Clean mobile UI** — built with React Native Paper, Material-style components
+- ⚡ **Custom hooks** — location and quest logic isolated behind reusable hooks
 
-## Tech Stack
+## Getting started
 
-- **React Native** with Expo
-- **TypeScript** for type safety
-- **React Native Paper** for UI components
-- **Expo Location** for GPS functionality
-- **Custom hooks** for state management
+> Requires [Node.js](https://nodejs.org), the [Expo](https://docs.expo.dev/get-started/installation/)
+> tooling, and the **Expo Go** app on your phone (or an iOS/Android simulator).
+
+```bash
+git clone https://github.com/danielsampar12/questline.git
+cd questline
+npm install
+npx expo start
+```
+
+Scan the QR code with Expo Go, or press `i` / `a` to launch an iOS / Android simulator.
+
+> **Location permissions:** the app requests foreground location access on first launch —
+> grant it so GPS proximity detection works.
+
+## Tech stack
+
+| Layer | Tools |
+|---|---|
+| Framework | React Native 0.79, Expo 53, React 19 |
+| Language | TypeScript 5.8 |
+| UI | React Native Paper |
+| Location | Expo Location (high-accuracy GPS) |
+| Persistence | AsyncStorage |
 
 ## Architecture
 
-### Core Components
+The app keeps game logic out of the UI and behind small, focused hooks:
 
-- `QuestScreen` - Main game interface
-- `useLocation` - Location management hook
-- `useQuest` - Quest logic and progression
-- `locationUtils` - Distance calculations and utilities
+- **`QuestScreen`** — main game interface; renders the active quest, riddle, and distance
+- **`useLocation`** — wraps Expo Location: permissions, high-accuracy watch, and live coordinates
+- **`useQuest`** — quest state machine: current step, progression, points, and streaks
+- **`locationUtils`** — distance calculation (haversine) and proximity helpers
 
-### Quest System
-
-- **Quest Data Structure**: Each quest has a riddle, target location, difficulty, and points
-- **Location Accuracy**: Configurable accuracy radius for each quest
-- **Progress Tracking**: Points, streaks, and completion status
-- **Direction Hints**: Compass directions to help guide users
-
-### Location Features
-
-- **Haversine Formula**: Accurate distance calculations between GPS coordinates
-- **High Accuracy GPS**: Uses `Location.Accuracy.High` for precise positioning
-- **Error Handling**: Comprehensive error handling for location services
-- **Permission Management**: Graceful permission request flow
-
-## Getting Started
-
-1. **Install dependencies**:
-
-   ```bash
-   npm install
-   ```
-
-2. **Start the development server**:
-
-   ```bash
-   npm start
-   ```
-
-3. **Run on device/simulator**:
-   ```bash
-   npm run ios    # iOS
-   npm run android # Android
-   ```
-
-## Usage
-
-1. **Grant Location Permission**: The app will request location access
-2. **Start a Quest**: Tap "Start Quest" to begin your first adventure
-3. **Follow the Riddle**: Read the riddle and hint to find the target location
-4. **Check Location**: Tap "Check Location" when you think you're in the right place
-5. **Complete Quests**: Successfully find locations to earn points and unlock new quests
-
-## Quest Configuration
-
-Quests are defined in `src/data/quests.ts`. Each quest includes:
-
-```typescript
-{
-  id: 'quest-1',
-  title: 'The Hidden Treasure',
-  riddle: 'Where the old oak tree once stood...',
-  hint: 'Look for a building with a clock tower',
-  targetLocation: {
-    latitude: -26.9020959,
-    longitude: -49.0811795,
-    accuracy: 50 // 50 meter radius
-  },
-  completed: false,
-  difficulty: 'easy',
-  points: 100
-}
+```
+src/
+├── screens/      # QuestScreen and UI
+├── hooks/        # useLocation, useQuest
+├── utils/        # locationUtils — distance & proximity
+└── data/         # quest definitions (riddles, hints, coordinates)
 ```
 
-## Location Accuracy
+## Configuring your own quest
 
-The app uses multiple methods for accurate location detection:
+Quests are plain data — add riddles, hints, and target coordinates in `src/data` and they
+appear in the app. No code changes needed to build a new hunt.
 
-1. **Haversine Formula**: Calculates great-circle distances between coordinates
-2. **High Accuracy GPS**: Uses the most precise location settings
-3. **Error Handling**: Graceful fallbacks for location failures
-4. **Direction Hints**: Provides compass directions to guide users
+## Roadmap
 
-## Performance Optimizations
+- [ ] Multiple quest packs / selectable hunts
+- [ ] Photo proof at each checkpoint
+- [ ] Shareable custom quests
+- [ ] Offline map tiles
 
-- **Custom Hooks**: Separated concerns for better reusability
-- **Memoized Calculations**: Optimized distance calculations
-- **Error Boundaries**: Graceful error handling
-- **Loading States**: Better user experience during location requests
+## License
 
-## Development Best Practices
+MIT — see [LICENSE](LICENSE).
 
-- **TypeScript**: Full type safety throughout the app
-- **Custom Hooks**: Reusable logic separation
-- **Error Handling**: Comprehensive error management
-- **User Experience**: Loading states and clear feedback
-- **Code Organization**: Clean folder structure and separation of concerns
+---
 
-## Troubleshooting
-
-### Location Issues
-
-- Ensure location services are enabled on the device
-- Check that the app has location permissions
-- Try moving to an open area for better GPS signal
-- Restart the app if location requests fail
-
-### Quest Issues
-
-- Verify quest coordinates are correct
-- Check that the accuracy radius is appropriate for the location
-- Ensure the riddle and hint are clear and helpful
-
-## Future Enhancements
-
-- [ ] Offline quest support
-- [ ] Social features and leaderboards
-- [ ] Custom quest creation
-- [ ] Augmented reality integration
-- [ ] Push notifications for nearby quests
-- [ ] Quest categories and themes
+<div align="center">
+<sub>Built with React Native + Expo. Best played on foot. 🧭</sub>
+</div>
